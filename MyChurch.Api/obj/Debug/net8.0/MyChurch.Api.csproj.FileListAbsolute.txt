@@ -57,3 +57,4 @@ C:\Users\guede\Desktop\MyChurch\MyChurch.Api\obj\Debug\net8.0\refint\MyChurch.Ap
 C:\Users\guede\Desktop\MyChurch\MyChurch.Api\obj\Debug\net8.0\MyChurch.Api.pdb
 C:\Users\guede\Desktop\MyChurch\MyChurch.Api\obj\Debug\net8.0\MyChurch.Api.genruntimeconfig.cache
 C:\Users\guede\Desktop\MyChurch\MyChurch.Api\obj\Debug\net8.0\ref\MyChurch.Api.dll
+C:\Users\guede\Desktop\MyChurch\MyChurch.Api\obj\Debug\net8.0\MyChurch.Api.sourcelink.json

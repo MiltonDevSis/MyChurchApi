@@ -1,7 +1,9 @@
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using MyChurch.Api.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +20,11 @@ app.Run();
 // Metodo que configrua as injeções de dependencia do projeto.
 static void ConfigurarInjecaoDeDependencia(WebApplicationBuilder builder)
 {
+
+    string? connectionString = builder.Configuration.GetConnectionString("PADRAO");
+    builder.Services.AddDbContext<ApplicationContext>( options => 
+    options.UseNpgsql(connectionString), ServiceLifetime.Transient, ServiceLifetime.Transient);
+
     builder.Services
     .AddSingleton(builder.Configuration)
     .AddSingleton(builder.Environment);
@@ -59,7 +66,7 @@ static void ConfigurarServices(WebApplicationBuilder builder)
             }
         });
 
-        c.SwaggerDoc("v1", new OpenApiInfo { Title = "ControleFacil.Api", Version = "v1" });   
+        c.SwaggerDoc("v1", new OpenApiInfo { Title = "ControleFacil.Api", Version = "v1" });
     });
 
     builder.Services.AddAuthentication(x =>
@@ -93,8 +100,8 @@ static void ConfigurarAplicacao(WebApplication app)
     app.UseSwagger()
         .UseSwaggerUI(c =>
         {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "ControleFacil.Api v1");
-                c.RoutePrefix = string.Empty;
+            c.SwaggerEndpoint("/swagger/v1/swagger.json", "ControleFacil.Api v1");
+            c.RoutePrefix = string.Empty;
         });
 
     app.UseCors(x => x
