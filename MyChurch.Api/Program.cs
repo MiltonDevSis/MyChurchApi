@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using MyChurch.Api.Data;
+using MyChurch.Api.Domain.Classes;
+using MyChurch.Api.Domain.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,7 +29,8 @@ static void ConfigurarInjecaoDeDependencia(WebApplicationBuilder builder)
 
     builder.Services
     .AddSingleton(builder.Configuration)
-    .AddSingleton(builder.Environment);
+    .AddSingleton(builder.Environment)
+    .AddScoped<IUsuarioRepository, UsuarioRepository>();
 }
 
 // Configura o serviços da API.
