@@ -17,5 +17,6 @@ Passo a Pass de como criar uma nova entidade
 Criando o Crud
     1º Modelo / entidade
     2º Repositório
-    3º Serviço
-    4º Controller
+    3º Contrato ou DTO 
+    4º Serviço
+    5º Controller
