@@ -1,8 +1,10 @@
 using System.Text;
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using MyChurch.Api.AutoMapper;
 using MyChurch.Api.Data;
 using MyChurch.Api.Domain.Classes;
 using MyChurch.Api.Domain.Interfaces;
@@ -27,9 +29,16 @@ static void ConfigurarInjecaoDeDependencia(WebApplicationBuilder builder)
     builder.Services.AddDbContext<ApplicationContext>( options => 
     options.UseNpgsql(connectionString), ServiceLifetime.Transient, ServiceLifetime.Transient);
 
+    var config = new MapperConfiguration(cfg => {
+        cfg.AddProfile<UsuarioProfile>();
+    });
+
+    IMapper mapper = config.CreateMapper();
+
     builder.Services
     .AddSingleton(builder.Configuration)
     .AddSingleton(builder.Environment)
+    .AddSingleton(mapper)
     .AddScoped<IUsuarioRepository, UsuarioRepository>();
 }
 
