@@ -10,5 +10,7 @@ namespace MyChurch.Api.Domain.Services.Interfaces
     public interface IUsuarioService : IService<UsuarioRequestContract, UsuarioResponseContract, long>
     {
         Task<UsuarioLoginResponseContract> Auntenticar(UsuarioLoginRequestContract usuarioLoginRequest);
+
+        Task<UsuarioResponseContract> Obter(string email);
     }
 }
