@@ -8,6 +8,8 @@ using MyChurch.Api.AutoMapper;
 using MyChurch.Api.Data;
 using MyChurch.Api.Domain.Classes;
 using MyChurch.Api.Domain.Interfaces;
+using MyChurch.Api.Domain.Services.Classes;
+using MyChurch.Api.Domain.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,7 +41,8 @@ static void ConfigurarInjecaoDeDependencia(WebApplicationBuilder builder)
     .AddSingleton(builder.Configuration)
     .AddSingleton(builder.Environment)
     .AddSingleton(mapper)
-    .AddScoped<IUsuarioRepository, UsuarioRepository>();
+    .AddScoped<IUsuarioRepository, UsuarioRepository>()
+    .AddScoped<IUsuarioService, UsuarioService>();
 }
 
 // Configura o serviços da API.
