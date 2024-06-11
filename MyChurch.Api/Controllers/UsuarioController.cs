@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Authentication;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -21,7 +22,27 @@ namespace MyChurch.Api.Controllers
         }
 
         [HttpPost]
+        [Route("login")]
         [AllowAnonymous]
+        public async Task<IActionResult> autenticar(UsuarioLoginRequestContract contrato)
+        {
+            try
+            {
+                return Ok(await _usuarioService.Auntenticar(contrato));
+            }
+            catch (AuthenticationException ex) 
+            {
+                return Unauthorized(new {statusCode = 401, message = ex.Message});
+            }
+            catch (Exception ex)
+            {
+                
+                return Problem(ex.Message);
+            }
+        }
+
+        [HttpPost]
+        [Authorize]
         public async Task<IActionResult> adicionar(UsuarioRequestContract contrato)
         {
             try
@@ -52,7 +73,7 @@ namespace MyChurch.Api.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        [AllowAnonymous]
+        [Authorize]
         public async Task<IActionResult> Obter(long id)
         {
             try
@@ -68,7 +89,7 @@ namespace MyChurch.Api.Controllers
 
         [HttpPut]
         [Route("{id}")]
-        [AllowAnonymous]
+        [Authorize]
         public async Task<IActionResult> Atualizar(long id, UsuarioRequestContract contrato)
         {
             try
@@ -84,7 +105,7 @@ namespace MyChurch.Api.Controllers
 
         [HttpDelete]
         [Route("{id}")]
-        [AllowAnonymous]
+        [Authorize]
         public async Task<IActionResult> Deletar(long id)
         {
             try
