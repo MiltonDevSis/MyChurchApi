@@ -1,6 +1,7 @@
 # Ignorar arquivos de compilação
 
- MyChurch.Api/bin/Debug/
- MyChurch.Api/obj/Debug/
- MyChurch.Tests/bin/Debug/
- MyChurch.Tests/obj/Debug/
+*MyChurch.Api/bin/Debug/net8.0
+*MyChurch.Api/obj/Debug/
+
+*MyChurch.Tests/bin/Debug/net8.0
+*MyChurch.Tests/obj/Debug/

@@ -3,6 +3,7 @@ Instalar o dotnet-ef
 
 Criar migration
     dotnet ef migrations add CriarEntidadeUsuario
+    dotnet ef migrations add CriarEntidadeNaturezaDeLancamento
 
 Executar migration
     dotnet ef database update
