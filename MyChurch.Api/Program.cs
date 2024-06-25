@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using MyChurch.Api.AutoMapper;
+using MyChurch.Api.Contract.NaturezaDeLancamento;
 using MyChurch.Api.Data;
 using MyChurch.Api.Domain.Classes;
 using MyChurch.Api.Domain.Interfaces;
@@ -45,6 +46,7 @@ static void ConfigurarInjecaoDeDependencia(WebApplicationBuilder builder)
     .AddScoped<TokenService>()
     .AddScoped<IUsuarioRepository, UsuarioRepository>()
     .AddScoped<IUsuarioService, UsuarioService>()
+    .AddScoped<IService<NaturezaDeLancamentoRequestContract, NaturezaDeLancamentoResponseContract, long>, NaturezaDeLancamentoService>()
     .AddScoped<INaturezaDeLancamentoRepository, NaturezaDeLancamentoRepository>();
 }
 
